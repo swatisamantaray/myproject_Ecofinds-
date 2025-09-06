@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="m-0">My Listings</h4>
+  <a href="{{ url_for('add_product') }}" class="btn btn-success">+ Add New</a>
+</div>
+{% for p in products %}
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto"><img src="{{ p.image or 'https://placehold.co/300x200?text=EcoFinds' }}" class="rounded" style="width:120px;height:90px;object-fit:cover"></div>
+      <div class="col">
+        <form method="post" action="{{ url_for('update_listing', pid=p.id) }}" class="row g-2">
+          <div class="col-md-4"><input class="form-control" name="title" value="{{ p.title }}"></div>
+          <div class="col-md-2"><input class="form-control" name="price" type="number" step="0.01" value="{{ p.price }}"></div>
+          <div class="col-md-3"><input class="form-control" name="category" value="{{ p.category }}"></div>
+          <div class="col-md-3"><input class="form-control" name="image" value="{{ p.image }}"></div>
+          <div class="col-12">
+            <button class="btn btn-success btn-sm">Save</button>
+          </div>
+        </form>
+        <form method="post" action="{{ url_for('delete_listing', pid=p.id) }}" class="d-inline">
+          <button class="btn btn-outline-danger btn-sm mt-2">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}<p class="text-muted">No listings yet. <a href="{{ url_for('add_product') }}">Add one</a>.</p>{% endfor %}
+{% endblock %}

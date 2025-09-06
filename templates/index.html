@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="row g-2 mb-3" method="get">
+  <div class="col-sm-6"><input name="q" class="form-control" placeholder="Search by title..." value="{{ q or '' }}"></div>
+  <div class="col-sm-4">
+    <select name="category" class="form-select">
+      <option value="all" {{ 'selected' if category=='all' else '' }}>All</option>
+      {% for c in CATEGORIES %}<option value="{{c}}" {{ 'selected' if category==c else '' }}>{{ c|capitalize }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="col-sm-2"><button class="btn btn-success w-100">Filter</button></div>
+</form>
+<div class="row g-3">
+  {% for p in products %}
+  <div class="col-12 col-sm-6 col-lg-4">
+    <div class="card h-100">
+      <img src="{{ p.image or 'https://placehold.co/600x400?text=EcoFinds' }}" class="card-img-top" alt="{{ p.title }}">
+      <div class="card-body">
+        <h5 class="card-title text-truncate">{{ p.title }}</h5>
+        <div class="text-muted text-capitalize">{{ p.category }}</div>
+        <div class="fw-bold mt-1">₹{{ '%.2f'|format(p.price) }}</div>
+        <a class="stretched-link" href="{{ url_for('product_detail', pid=p.id) }}"></a>
+      </div>
+    </div>
+  </div>
+  {% else %}<p class="text-center text-muted">No products found.</p>{% endfor %}
+</div>
+{% if current_user.is_authenticated %}<a class="fab-add" href="{{ url_for('add_product') }}">+</a>{% endif %}
+{% endblock %}

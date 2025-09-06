@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mx-auto" style="max-width:620px">
+  <div class="card"><div class="card-body">
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <img src="{{ current_user.profile_image or 'https://placehold.co/80x80?text=User' }}" class="rounded-circle" style="width:80px;height:80px;object-fit:cover">
+      <div>
+        <h4 class="mb-0">User Dashboard</h4>
+        <div class="text-muted small">Member since {{ current_user.created_at.strftime('%Y-%m-%d') }}</div>
+      </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+      <label class="form-label">Username</label>
+      <input class="form-control mb-2" name="username" value="{{ current_user.username or '' }}">
+      <label class="form-label">Email</label>
+      <input class="form-control mb-2" name="email" type="email" value="{{ current_user.email }}">
+      <label class="form-label">Profile Image URL</label>
+      <input class="form-control mb-2" name="profile_image" placeholder="https://..." value="{{ current_user.profile_image or '' }}">
+      <div class="text-center text-muted small my-1">— OR —</div>
+      <input class="form-control mb-3" name="file" type="file" accept="image/*">
+      <button class="btn btn-success w-100">Save</button>
+    </form>
+  </div></div>
+</div>
+{% endblock %}

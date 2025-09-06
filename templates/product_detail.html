@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="text-decoration-none small">&larr; Back</a>
+<div class="row mt-2">
+  <div class="col-lg-7"><img src="{{ p.image or 'https://placehold.co/800x400?text=EcoFinds' }}" class="img-fluid rounded"></div>
+  <div class="col-lg-5">
+    <h3>{{ p.title }}</h3>
+    <div class="text-muted text-capitalize">{{ p.category }}</div>
+    <p class="mt-2">{{ p.description }}</p>
+    <div class="h4">₹{{ '%.2f'|format(p.price) }}</div>
+    <form method="post" action="{{ url_for('cart_add', pid=p.id) }}"><button class="btn btn-success mt-2">Add to Cart</button></form>
+  </div>
+</div>
+{% endblock %}

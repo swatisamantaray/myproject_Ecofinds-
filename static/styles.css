@@ -1,0 +1,7 @@
+.brand-bar{background:linear-gradient(90deg,#16a34a,#22c55e);height:4px}
+.card-img-top{object-fit:cover;height:180px}
+.fab-add{position:fixed;right:20px;bottom:20px;border-radius:9999px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.25);font-size:28px;text-decoration:none}
+.fab-add:hover{background:#15803d;color:#fff}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#111;text-decoration:none}
+.logo .badge{width:28px;height:28px;border-radius:8px;background:#16a34a;display:inline-block}
+.placeholder-btn{border:1px dashed #16a34a;color:#15803d}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="text-decoration-none small">&larr; Back</a>
+<div class="mx-auto" style="max-width:640px">
+  <div class="card mt-2"><div class="card-body">
+    <h4 class="mb-3">Add New Product</h4>
+    <form method="post" enctype="multipart/form-data">
+      <input class="form-control mb-2" name="title" placeholder="Product Title" required>
+      <select class="form-select mb-2" name="category">{% for c in CATEGORIES %}<option value="{{c}}">{{ c|capitalize }}</option>{% endfor %}</select>
+      <textarea class="form-control mb-2" name="description" placeholder="Description"></textarea>
+      <input class="form-control mb-2" name="price" type="number" step="0.01" placeholder="Price" required>
+      <label class="form-label">Image (choose one)</label>
+      <div class="d-flex gap-2 mb-2">
+        <input class="form-control" name="image" id="imageUrl" placeholder="Image URL (optional)">
+        <button class="btn btn-sm placeholder-btn" type="button" onclick="document.getElementById('imageUrl').value='https://placehold.co/600x400?text=EcoFinds'">+ Add Image (Placeholder)</button>
+      </div>
+      <div class="text-center text-muted small my-1">— OR —</div>
+      <input class="form-control mb-3" name="file" type="file" accept="image/*">
+      <button class="btn btn-success w-100">Submit Listing</button>
+    </form>
+  </div></div>
+</div>
+{% endblock %}
