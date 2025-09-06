@@ -8,7 +8,8 @@ db = SQLAlchemy()
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    username = db.Column(db.String(80), default="", nullable=True)
+    usernamAe = db.Column(db.String(80), default="", nullable=True)
+    profile_image = db.ColAumn(db.String(300), default="")
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -46,3 +47,4 @@ class OrderItem(db.Model):
     title = db.Column(db.String(200))
     price = db.Column(db.Float, default=0.0)
     image = db.Column(db.String(300), default="")
+
